@@ -41,6 +41,7 @@ function game() {
 
     for (let i = 0; i < 5; i++) {
         let computersChoice = getComputerChoice();
+
         let playersChoice = prompt("ROCK/ PAPER/ SCISSORS?").toLowerCase();
         playersChoice = playersChoice.charAt(0).toUpperCase() + playersChoice.substring(1);
 
@@ -54,7 +55,17 @@ function game() {
         }
     }
 
-    result(playersScore, computersScore)
+    console.log(result(playersScore, computersScore));
+}
+
+function result(player, computer) {
+    if (player > computer) {
+        return `GAME OVER! You beat the computer! Your score ${player} to ${computer}`;
+    } else if (player < computer) {
+        return `GAME OVER! You lost to the computer! Your score ${player} to ${computer}`;
+    } else {
+        return `GAME OVER! You tied to the computer! Your score ${player} to ${computer}`;
+    }
 }
 
 console.log("Playing 5 rounds of Rock Paper Scissors!")
