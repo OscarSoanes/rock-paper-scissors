@@ -15,6 +15,26 @@ function getComputerChoice() {
     return output;
 }
 
+function getPlayersChoice() {
+    let valid = false;
+    let playersChoice;
+
+    while (!valid) {
+        playersChoice = prompt("ROCK/ PAPER/ SCISSORS?");
+        playersChoice = playersChoice.charAt(0).toUpperCase() + playersChoice.substring(1).toLowerCase();
+
+        if (playersChoice === "Rock" || playersChoice === "Paper" || playersChoice === "Scissors") {
+            valid = true;
+        } else {
+            alert("Please enter 'Rock', 'Paper' or 'Scissors'!");
+            console.warn(`Your input of ${playersChoice} was not valid`);
+        }
+    }
+
+    return playersChoice;
+    
+}
+
 function playRound(playersChoice, computersChoice) {
     if (playersChoice === computersChoice) {
         return `Tie! ${playersChoice} equals ${computersChoice}`;
@@ -41,9 +61,7 @@ function game() {
 
     for (let i = 0; i < 5; i++) {
         let computersChoice = getComputerChoice();
-
-        let playersChoice = prompt("ROCK/ PAPER/ SCISSORS?").toLowerCase();
-        playersChoice = playersChoice.charAt(0).toUpperCase() + playersChoice.substring(1);
+        let playersChoice = getPlayersChoice();
 
         let result = playRound(playersChoice, computersChoice);
         console.log(result);
