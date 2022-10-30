@@ -35,8 +35,28 @@ function playRound(playersChoice, computersChoice) {
     return "You Lose! You didn't say rock, paper or scissors!"
 }
 
-const computersChoice = getComputerChoice();
-let playersChoice = prompt("ROCK/ PAPER/ SCISSORS?").toLowerCase();
-playersChoice = playersChoice.charAt(0).toUpperCase() + playersChoice.substring(1);
+function game() {
+    var playersScore = 0;
+    var computersScore = 0;
 
-console.log(playRound(playersChoice, computersChoice));
+    for (let i = 0; i < 5; i++) {
+        let computersChoice = getComputerChoice();
+        let playersChoice = prompt("ROCK/ PAPER/ SCISSORS?").toLowerCase();
+        playersChoice = playersChoice.charAt(0).toUpperCase() + playersChoice.substring(1);
+
+        let result = playRound(playersChoice, computersChoice);
+        console.log(result);
+
+        if (result.includes("Win")) {
+            playersScore++
+        } else if (result.includes("Lose")) {
+            computersScore++
+        }
+    }
+
+    result(playersScore, computersScore)
+}
+
+console.log("Playing 5 rounds of Rock Paper Scissors!")
+game()
+
