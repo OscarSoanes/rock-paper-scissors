@@ -5,14 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="javascript.js"></script>
 </head>
 <body>
-    
+    <h1>Rock Paper Scissors</h1>
+    <p>First one to 5 wins!</p>
+    <div class="button-manager">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+    <div id="scores">
+    </div>
+
+    <div id="results">
+    </div>
+
+    <script src="javascript.js"></script>
 </body>
 <style>
     * {
         background-color: black;
+        color: white;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .button-manager {
+        display: flex;
+        gap: 4em;
+    }
+    
+    button {
+        height: 8em;
+        width: 8em;
+        background-color: darkgray;
+        color: black;
     }
 </style>
 </html>
