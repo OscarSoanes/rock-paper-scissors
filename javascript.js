@@ -34,14 +34,30 @@ function playRound(playersChoice, computersChoice) {
     return 0;
 }
 
+function updateMessages(playersChoice, computersChoice, result) {
+    if (result == -1) {
+        computersScore++;
+        message.textContent = `You lose! ${computersChoice} beats ${playersChoice}`;
+    } else if (result == 0) {
+        message.textContent = `It's a tie! You both chose ${playersChoice}`;
+    } else {
+        playersScore++;
+        message.textContent = `You win! ${playersChoice} beats ${computersChoice}`;
+    }
+
+    pScore.textContent = `Players Score: ${playersScore}`;
+    cScore.textContent = `Computers Score: ${computersScore}`;
+
+    scores.appendChild(message);
+    scores.appendChild(pScore);
+    scores.appendChild(cScore);
+}
+
 function game(playersChoice) {
     let computersChoice = getComputerChoice();
-    
     const result = playRound(playersChoice, computersChoice);
-    if (result == -1) computersScore++;
-    if (result == 1) playersScore++;
-
-    console.log(`${playersScore} and ${computersScore}`)
+    
+    updateMessages(playersChoice, computersChoice, result);
 
     if (playersScore === 5 || computersScore === 5) {
         results(playersScore, computersScore)
@@ -51,21 +67,32 @@ function game(playersChoice) {
 function results(player, computer) {
     let message;
     if (player > computer) {
-        message = `You beat the computer! Your score ${player} to ${computer}`;
+        message = "You beat the computer! Reload the page to play again";
     } else {
-        message = `You lost to the computer! Your score ${player} to ${computer}`;
+        message = "You lost to the computer! Reload the page to try again";
     }
 
-    const container = document.querySelector('#container');
+    const results = document.querySelector('#results');
 
     const result = document.createElement('p');
     result.style.fontSize = 16;
     result.textContent = message;
-    container.appendChild(result)
+    results.appendChild(result)
+
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
 }
 
 var playersScore = 0;
 var computersScore = 0;
+
+var scores = document.querySelector('#scores');
+var pScore = document.createElement('p');
+var cScore = document.createElement('p');
+var message = document.createElement('p');
+
+
 const btns = document.querySelectorAll('button');
     
 function logResult(e) {
