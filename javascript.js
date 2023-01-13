@@ -56,27 +56,18 @@ function playRound(playersChoice, computersChoice) {
 }
 
 function game() {
-    var playersScore = 0;
-    var computersScore = 0;
+    let playersScore = 0;
+    let computersScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        let computersChoice = getComputerChoice();
-        let playersChoice = getPlayersChoice();
+    let computersChoice = getComputerChoice();
+    let playersChoice = getPlayersChoice();
 
-        let result = playRound(playersChoice, computersChoice);
-        console.log(result);
+    const result = playRound(playersChoice, computersChoice);
 
-        if (result.includes("Win")) {
-            playersScore++
-        } else if (result.includes("Lose")) {
-            computersScore++
-        }
-    }
-
-    console.log(result(playersScore, computersScore));
+    console.log(results(playersScore, computersScore));
 }
 
-function result(player, computer) {
+function results(player, computer) {
     if (player > computer) {
         return `GAME OVER! You beat the computer! Your score ${player} to ${computer}`;
     } else if (player < computer) {
@@ -86,6 +77,5 @@ function result(player, computer) {
     }
 }
 
-console.log("Playing 5 rounds of Rock Paper Scissors!")
 game()
 
