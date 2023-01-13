@@ -92,6 +92,8 @@ var pScore = document.createElement('p');
 var cScore = document.createElement('p');
 var message = document.createElement('p');
 
+pScore.style.marginBottom = 0
+cScore.style.marginTop = 0
 
 const btns = document.querySelectorAll('button');
     
