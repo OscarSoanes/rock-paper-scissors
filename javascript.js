@@ -16,29 +16,34 @@ function getComputerChoice() {
 }
 
 function playRound(playersChoice, computersChoice) {
+    // player loses
     if (playersChoice === "rock" && computersChoice === "paper" ||
         playersChoice === "paper" && computersChoice === "scissors" ||
         playersChoice === "scissors" && computersChoice === "rock") {
-        return `You Lose! ${computersChoice} beats ${playersChoice}`;
+        return -1;
     }
 
+    // player wins
     if (playersChoice === "rock" && computersChoice === "scissors" ||
         playersChoice === "paper" && computersChoice === "rock" ||
         playersChoice === "scissors" && computersChoice == "paper") {
-        return `You Win! ${playersChoice} beats ${computersChoice}`;
+        return 1;
     }
-
-    return `Tie! ${playersChoice} equals ${computersChoice}`;
+    
+    // tied
+    return 0;
 }
 
 function game(playersChoice) {
-    let playersScore = 0;
-    let computersScore = 0;
-
     let computersChoice = getComputerChoice();
     
     const result = playRound(playersChoice, computersChoice);
     console.log(result)
+
+    if (result == -1) computersScore++;
+    if (result == 1) playersScore++;
+
+    console.log(`${playersScore} and ${computersScore}`)
     // console.log(results(playersScore, computersScore));
 }
 
@@ -52,6 +57,8 @@ function results(player, computer) {
     }
 }
 
+var playersScore = 0;
+var computersScore = 0;
 const btns = document.querySelectorAll('button');
     
 function logResult(e) {
