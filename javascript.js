@@ -38,23 +38,30 @@ function game(playersChoice) {
     let computersChoice = getComputerChoice();
     
     const result = playRound(playersChoice, computersChoice);
-    console.log(result)
-
     if (result == -1) computersScore++;
     if (result == 1) playersScore++;
 
     console.log(`${playersScore} and ${computersScore}`)
-    // console.log(results(playersScore, computersScore));
+
+    if (playersScore === 5 || computersScore === 5) {
+        results(playersScore, computersScore)
+    }
 }
 
 function results(player, computer) {
+    let message;
     if (player > computer) {
-        return `GAME OVER! You beat the computer! Your score ${player} to ${computer}`;
-    } else if (player < computer) {
-        return `GAME OVER! You lost to the computer! Your score ${player} to ${computer}`;
+        message = `You beat the computer! Your score ${player} to ${computer}`;
     } else {
-        return `GAME OVER! You tied to the computer! Your score ${player} to ${computer}`;
+        message = `You lost to the computer! Your score ${player} to ${computer}`;
     }
+
+    const container = document.querySelector('#container');
+
+    const result = document.createElement('p');
+    result.style.fontSize = 16;
+    result.textContent = message;
+    container.appendChild(result)
 }
 
 var playersScore = 0;
