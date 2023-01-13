@@ -4,67 +4,42 @@ function getComputerChoice() {
     let output = "";
 
     switch (choice) {
-        case 0: output = "Rock"; 
+        case 0: output = "rock"; 
         break;
-        case 1: output = "Paper"; 
+        case 1: output = "paper"; 
         break;
-        case 2: output = "Scissors"; 
+        case 2: output = "scissors"; 
         break;
     }
 
     return output;
 }
 
-function getPlayersChoice() {
-    let valid = false;
-    let playersChoice;
-
-    while (!valid) {
-        playersChoice = prompt("ROCK/ PAPER/ SCISSORS?");
-        playersChoice = playersChoice.charAt(0).toUpperCase() + playersChoice.substring(1).toLowerCase();
-
-        if (playersChoice === "Rock" || playersChoice === "Paper" || playersChoice === "Scissors") {
-            valid = true;
-        } else {
-            alert("Please enter 'Rock', 'Paper' or 'Scissors'!");
-            console.warn(`Your input of ${playersChoice} was not valid`);
-        }
-    }
-
-    return playersChoice;
-    
-}
-
 function playRound(playersChoice, computersChoice) {
-    if (playersChoice === computersChoice) {
-        return `Tie! ${playersChoice} equals ${computersChoice}`;
-    }
-
-    if (playersChoice === "Rock" && computersChoice === "Paper" ||
-        playersChoice === "Paper" && computersChoice === "Scissors" ||
-        playersChoice === "Scissors" && computersChoice === "Rock") {
+    if (playersChoice === "rock" && computersChoice === "paper" ||
+        playersChoice === "paper" && computersChoice === "scissors" ||
+        playersChoice === "scissors" && computersChoice === "rock") {
         return `You Lose! ${computersChoice} beats ${playersChoice}`;
     }
 
-    if (playersChoice === "Rock" && computersChoice === "Scissors" ||
-        playersChoice === "Paper" && computersChoice === "Rock" ||
-        playersChoice === "Scissors" && computersChoice == "Paper") {
+    if (playersChoice === "rock" && computersChoice === "scissors" ||
+        playersChoice === "paper" && computersChoice === "rock" ||
+        playersChoice === "scissors" && computersChoice == "paper") {
         return `You Win! ${playersChoice} beats ${computersChoice}`;
     }
 
-    return "You Lose! You didn't say rock, paper or scissors!"
+    return `Tie! ${playersChoice} equals ${computersChoice}`;
 }
 
-function game() {
+function game(playersChoice) {
     let playersScore = 0;
     let computersScore = 0;
 
     let computersChoice = getComputerChoice();
-    let playersChoice = getPlayersChoice();
-
+    
     const result = playRound(playersChoice, computersChoice);
-
-    console.log(results(playersScore, computersScore));
+    console.log(result)
+    // console.log(results(playersScore, computersScore));
 }
 
 function results(player, computer) {
@@ -77,5 +52,13 @@ function results(player, computer) {
     }
 }
 
-game()
+const btns = document.querySelectorAll('button');
+    
+function logResult(e) {
+    game(e.target.id)
+}
+
+btns.forEach(button => button.addEventListener('click', logResult))
+
+
 
